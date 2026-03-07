@@ -4,7 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Chraeten Lategan</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  /* Google Fonts loaded via @import with graceful fallback */
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap');
+</style>
 <style>
   :root {
     --cream: #f5f0e8;
@@ -745,7 +748,7 @@
     <div class="hobby-card reveal">
       <span class="hobby-icon">🏃</span>
       <div class="hobby-name">Running</div>
-      <a href="https://www.strava.com" target="_blank" class="hobby-link">→ Strava</a>
+      <a href="https://www.strava.com/athletes/134258833" target="_blank" class="hobby-link">→ Strava</a>
     </div>
     <div class="hobby-card reveal">
       <span class="hobby-icon">🏋️</span>
@@ -796,10 +799,10 @@
   </div>
   <p class="reveal" style="color:rgba(245,240,232,0.65); font-weight:300; max-width:480px; margin-bottom:2.5rem;">Whether it's about a project, an opportunity, or just to say hi — I'm always open to a good conversation.</p>
   <div class="contact-links reveal">
-    <a href="mailto:chraeten@email.com" class="contact-btn primary">Email Me</a>
+    <a href="mailto:chraetenlategan@gmail.com" class="contact-btn primary">Email Me</a>
     <a href="https://www.linkedin.com" target="_blank" class="contact-btn">LinkedIn</a>
-    <a href="https://github.com" target="_blank" class="contact-btn">GitHub</a>
-    <a href="https://www.strava.com" target="_blank" class="contact-btn">Strava</a>
+    <a href="https://github.com/chraetenlategan" target="_blank" class="contact-btn">GitHub</a>
+    <a href="https://www.strava.com/athletes/134258833" target="_blank" class="contact-btn">Strava</a>
     <a href="https://www.youtube.com" target="_blank" class="contact-btn">YouTube</a>
   </div>
   <div class="footer-bottom">
@@ -808,7 +811,7 @@
   </div>
 </section>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
@@ -836,10 +839,22 @@
     bar.style.width = '0%';
     setTimeout(() => barObserver.observe(bar), 100);
     barObserver.observe(bar);
-    bar.addEventListener('transitionend', () => {}, { once: true });
-    // Trigger animation
-    setTimeout(() => { bar.style.width = targetWidth; }, 600);
+    bar.addEventListener('transitionend', () => {});
   });
+
+  // Nav active state on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => link.classList.remove('active'));
+        const activeLink = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+        if (activeLink) activeLink.classList.add('active');
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(sec => navObserver.observe(sec));
 </script>
 </body>
 </html>
