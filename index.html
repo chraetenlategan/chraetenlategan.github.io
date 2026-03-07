@@ -316,6 +316,106 @@
   .level-7 { background: #e8f0e4; color: #4a6b3a; }
   .level-5 { background: #f0ede4; color: #6b5e3a; }
 
+  /* TYPING SPEED BANNER */
+  .typing-banner {
+    margin-bottom: 3rem;
+    border: 1px solid var(--light-line);
+    border-radius: 2px;
+    background: var(--dark);
+    overflow: hidden;
+  }
+  .typing-banner-inner {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 1.6rem 2.5rem;
+  }
+  .typing-stat-block {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+  }
+  .typing-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1;
+  }
+  .typing-stat-unit {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-top: 0.4rem;
+  }
+  .typing-divider {
+    width: 1px;
+    height: 3rem;
+    background: rgba(245,240,232,0.15);
+    flex-shrink: 0;
+  }
+  .typing-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .typing-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cream);
+  }
+  .typing-sublabel {
+    font-size: 0.78rem;
+    color: rgba(245,240,232,0.45);
+    font-weight: 300;
+  }
+  .typing-verify {
+    margin-left: auto;
+    padding: 0.5rem 1.2rem;
+    border: 1px solid rgba(245,240,232,0.25);
+    color: rgba(245,240,232,0.6);
+    text-decoration: none;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-radius: 1px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .typing-verify:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* GITHUB CTA */
+  .github-cta {
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+  .github-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.85rem 2.2rem;
+    border: 1px solid var(--dark);
+    color: var(--dark);
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-radius: 1px;
+    transition: all 0.25s;
+  }
+  .github-btn:hover {
+    background: var(--dark);
+    color: var(--cream);
+  }
+
   /* PROJECTS */
   .projects-grid {
     display: grid;
@@ -800,25 +900,108 @@
     <p class="section-label">What I've built</p>
     <h2 class="section-title">Projects</h2>
   </div>
+
+  <!-- Typing Speed Banner -->
+  <div class="typing-banner reveal">
+    <div class="typing-banner-inner">
+      <div class="typing-stat-block">
+        <span class="typing-stat-num">38</span>
+        <span class="typing-stat-unit">WPM</span>
+      </div>
+      <div class="typing-divider"></div>
+      <div class="typing-stat-block">
+        <span class="typing-stat-num">96<span style="font-size:1.4rem">%</span></span>
+        <span class="typing-stat-unit">Accuracy</span>
+      </div>
+      <div class="typing-divider"></div>
+      <div class="typing-info">
+        <span class="typing-label">Typing Speed</span>
+        <span class="typing-sublabel">Advanced Assessment · typing.com · March 2026</span>
+      </div>
+      <a href="https://www.typing.com/student/verify#391859162-160976952" target="_blank" class="typing-verify">Verify ↗</a>
+    </div>
+  </div>
+
   <div class="projects-grid">
     <div class="project-card reveal">
       <div class="project-icon">🐍</div>
       <div class="project-lang">Python · Turtle</div>
       <div class="project-title">Snake Game</div>
-      <p class="project-desc">A classic Snake game built with Python's Turtle graphics module. Features score tracking, collision detection, and increasing difficulty. My first fully playable game.</p>
+      <p class="project-desc">Classic Snake built with Python's Turtle graphics. Features score tracking, collision detection with walls and tail, and smooth OOP architecture across multiple files.</p>
     </div>
-    <div class="project-card project-coming reveal">
-      <div class="project-icon">🔧</div>
+    <div class="project-card reveal">
+      <div class="project-icon">🏓</div>
+      <div class="project-lang">Python · Turtle</div>
+      <div class="project-title">Pong Game</div>
+      <p class="project-desc">Two-player Pong with paddle controls, ball physics, and a live scoreboard. Ball accelerates with each bounce, adding increasing challenge.</p>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-icon">🚗</div>
+      <div class="project-lang">Python · Turtle</div>
+      <div class="project-title">Crossy Road Game</div>
+      <p class="project-desc">Navigate a turtle through colour-coded oncoming traffic. Cars spawn randomly across lanes and wrap around the screen for endless action.</p>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-icon">🃏</div>
       <div class="project-lang">Python</div>
-      <div class="project-title">More Coming Soon</div>
-      <p class="project-desc">Currently working on new projects as part of my first year at Belgium Campus. Watch this space — this section will grow.</p>
+      <div class="project-title">Blackjack</div>
+      <p class="project-desc">A fully playable Blackjack game against a dealer. Handles card drawing, bust detection, dealer logic, and an ASCII art logo splash screen.</p>
     </div>
-    <div class="project-card project-coming reveal">
-      <div class="project-icon">💡</div>
-      <div class="project-lang">TBD</div>
-      <div class="project-title">Future Project</div>
-      <p class="project-desc">Always experimenting with new ideas — from automation scripts to data tools. The next build is just around the corner.</p>
+    <div class="project-card reveal">
+      <div class="project-icon">🔐</div>
+      <div class="project-lang">Python</div>
+      <div class="project-title">Caesar Cipher</div>
+      <p class="project-desc">Encrypt and decode messages using a classic Caesar shift cipher. Supports full alphabet shifting with encode and decode modes.</p>
     </div>
+    <div class="project-card reveal">
+      <div class="project-icon">☕</div>
+      <div class="project-lang">Python · OOP</div>
+      <div class="project-title">Coffee Machine</div>
+      <p class="project-desc">A simulated coffee machine built twice — once procedurally and once in full OOP. Takes coin input, manages ingredient resources, and serves espresso, latte, or cappuccino.</p>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-icon">🔑</div>
+      <div class="project-lang">Python</div>
+      <div class="project-title">Password Generator</div>
+      <p class="project-desc">Generates randomised passwords with a custom mix of letters, numbers, and symbols. Characters are shuffled for unpredictability.</p>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-icon">🎨</div>
+      <div class="project-lang">Python · Turtle</div>
+      <div class="project-title">Rainbow Geometry</div>
+      <p class="project-desc">Draws every polygon from a quadrilateral to a pentacontagon (50 sides) with a dynamic rainbow colour spectrum. Each shape zooms to fill the canvas perfectly.</p>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-icon">🔢</div>
+      <div class="project-lang">Python</div>
+      <div class="project-title">Number Converters</div>
+      <p class="project-desc">Two standalone tools — a binary-to-decimal and hexadecimal-to-decimal converter — built using positional arithmetic without any built-in conversion functions.</p>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-icon">🏆</div>
+      <div class="project-lang">Python</div>
+      <div class="project-title">Higher or Lower Game</div>
+      <p class="project-desc">Guess which celebrity has more followers on social media. Correct answers keep the streak alive; one wrong guess ends the game.</p>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-icon">❓</div>
+      <div class="project-lang">Python · OOP</div>
+      <div class="project-title">Quiz Application</div>
+      <p class="project-desc">A True/False quiz engine powered by OOP. Questions load from a dataset, answers are checked live, and a final score is displayed at the end.</p>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-icon">🔵</div>
+      <div class="project-lang">Python · Turtle</div>
+      <div class="project-title">Dot Painting</div>
+      <p class="project-desc">Generates a 10×10 grid of colourful random dots inspired by Damien Hirst's spot paintings — each dot is a unique random RGB colour.</p>
+    </div>
+  </div>
+
+  <div class="github-cta reveal">
+    <a href="https://github.com/chraetenlategan/100-days-of-python" target="_blank" class="github-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      View all 100 Days of Python on GitHub
+    </a>
   </div>
 </section>
 
