@@ -689,12 +689,12 @@
     /* TESTIMONIALS */
     .testimonials-scroll-wrap {
       overflow-x: auto;
-      overflow-y: hidden;
+      overflow-y: visible;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: thin;
       scrollbar-color: var(--accent) transparent;
-      margin: 2.5rem -1rem 0;
-      padding: 0 1rem 1rem;
+      margin: 2.5rem 0 0;
+      padding: 0.5rem 0 1.2rem;
     }
 
     .testimonials-scroll-wrap::-webkit-scrollbar {
@@ -717,7 +717,7 @@
     }
 
     .testimonial-card {
-      width: 420px;
+      width: 440px;
       flex-shrink: 0;
       padding: 2.2rem 2.4rem;
       border: 1px solid var(--light-line);
@@ -725,6 +725,9 @@
       cursor: default;
       transition: all 0.25s ease;
       background: white;
+      height: auto;
+      min-height: 0;
+      box-sizing: border-box;
     }
 
     .testimonial-card.clickable {
