@@ -1751,43 +1751,54 @@
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
     // Auto-scroll with manual override for hobbies & testimonials
-    const setupAutoScroll = (wrapperId, trackId, scrollSpeed = 30) => {
-      const wrapper = document.getElementById(wrapperId);
-      const track = document.getElementById(trackId);
-      if (!wrapper || !track) return;
+    function setupAutoScroll(wrapper, speed) {
+      if (!wrapper) return;
+      let paused = false;
+      let resumeTimer;
+      let programmatic = false;
 
-      let isAutoScrolling = true;
-      let scrollTimeout;
-
-      const autoScroll = () => {
-        if (!isAutoScrolling) return;
-        wrapper.scrollLeft += scrollSpeed;
-
-        // Loop back to start when reaching end
-        if (wrapper.scrollLeft >= wrapper.scrollWidth - wrapper.clientWidth) {
-          wrapper.scrollLeft = 0;
+      function step() {
+        if (!paused) {
+          programmatic = true;
+          wrapper.scrollLeft += speed;
+          programmatic = false;
+          if (wrapper.scrollLeft >= wrapper.scrollWidth - wrapper.clientWidth) {
+            wrapper.scrollLeft = 0;
+          }
         }
-        requestAnimationFrame(autoScroll);
-      };
+        requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
 
-      // Start auto scroll
-      autoScroll();
-
-      // Pause on user scroll
+      // Pause on any user interaction
       wrapper.addEventListener('scroll', () => {
-        isAutoScrolling = false;
-        clearTimeout(scrollTimeout);
+        if (programmatic) return;
+        paused = true;
+        clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(() => { paused = false; }, 3000);
+      }, { passive: true });
 
-        // Resume auto-scroll after 3 seconds of inactivity
-        scrollTimeout = setTimeout(() => {
-          isAutoScrolling = true;
-          autoScroll();
-        }, 3000);
+      wrapper.addEventListener('pointerdown', () => {
+        paused = true;
+        clearTimeout(resumeTimer);
       });
-    };
+      wrapper.addEventListener('pointerup', () => {
+        clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(() => { paused = false; }, 3000);
+      });
 
-    setupAutoScroll('hobbies-scroll-wrap', 'hobbies-track', 0.8);
-    setupAutoScroll('testimonials-scroll-wrap', 'testimonials-track', 0.8);
+      wrapper.addEventListener('mouseenter', () => {
+        paused = true;
+        clearTimeout(resumeTimer);
+      });
+      wrapper.addEventListener('mouseleave', () => {
+        clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(() => { paused = false; }, 1500);
+      });
+    }
+
+    setupAutoScroll(document.getElementById('hobbies-scroll-wrap'), 0.6);
+    setupAutoScroll(document.getElementById('testimonials-scroll-wrap'), 0.5);
 
     // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
