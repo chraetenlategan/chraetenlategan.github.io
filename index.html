@@ -717,17 +717,31 @@
     }
 
     .testimonial-card {
-      width: 440px;
+      width: 340px;
       flex-shrink: 0;
-      padding: 2.2rem 2.4rem;
+      padding: 2rem 1.8rem 1.6rem;
       border: 1px solid var(--light-line);
       border-radius: 2px;
       cursor: default;
       transition: all 0.25s ease;
       background: white;
-      height: auto;
-      min-height: 0;
       box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .testimonial-card::before {
+      content: '\201C';
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      line-height: 1;
+      color: var(--accent);
+      opacity: 0.15;
+      position: absolute;
+      top: 0.5rem;
+      left: 1.2rem;
+      pointer-events: none;
     }
 
     .testimonial-card.clickable {
@@ -742,31 +756,62 @@
 
     .testimonial-quote {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
+      font-size: 1rem;
       font-style: italic;
-      line-height: 1.6;
+      line-height: 1.7;
       color: var(--mid);
       margin-bottom: 1.2rem;
+      margin-top: 1.6rem;
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 5;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .testimonial-quote.expanded {
+      display: block;
+      overflow: visible;
+    }
+
+    .testimonial-toggle {
+      background: none;
+      border: none;
+      padding: 0 0 1rem 0;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      cursor: pointer;
+      font-family: inherit;
+      text-align: left;
+    }
+
+    .testimonial-divider {
+      width: 28px;
+      height: 1px;
+      background: var(--light-line);
+      margin-bottom: 1rem;
     }
 
     .testimonial-author {
       font-weight: 500;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--dark);
     }
 
     .testimonial-role {
-      font-size: 0.78rem;
+      font-size: 0.73rem;
       color: var(--soft);
       margin-top: 0.2rem;
     }
 
     .testimonial-cta {
       display: inline-block;
-      margin-top: 1rem;
-      font-size: 0.75rem;
+      margin-top: 0.8rem;
+      font-size: 0.7rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--accent);
@@ -1669,26 +1714,24 @@
     <div class="testimonials-scroll-wrap">
       <div class="testimonials-track" id="testimonials-track">
         <div class="testimonial-card">
-          <div class="testimonial-quote">"I had a great experience working with this talented young professional on my business website. He was attentive, creative, and easy to communicate with throughout the process. The final result exceeded my expectations, and I highly recommend his services."</div>
-          <div class="testimonial-meta">
-            <div class="testimonial-author">Le-Ann Kurten</div>
-            <div class="testimonial-role">Owner, Brush Tip Studio · Web Development Client</div>
-          </div>
+          <div class="testimonial-quote" id="quote-leann">"I had a great experience working with this talented young professional on my business website. He was attentive, creative, and easy to communicate with throughout the process. The final result exceeded my expectations, and I highly recommend his services."</div>
+          <button class="testimonial-toggle" onclick="toggleQuote('quote-leann', this)">Read more ↓</button>
+          <div class="testimonial-divider"></div>
+          <div class="testimonial-author">Le-Ann Kurten</div>
+          <div class="testimonial-role">Owner, Brush Tip Studio · Web Development Client</div>
         </div>
         <div class="testimonial-card clickable" onclick="openTestimonial()">
           <div class="testimonial-quote">"Chraeten is a reliable and respectful young man. He has a positive attitude and always tries to better himself."</div>
-          <div class="testimonial-meta">
-            <div class="testimonial-author">Hoërskool Standerton</div>
-            <div class="testimonial-role">School Testimonial · November 2025</div>
-          </div>
+          <div class="testimonial-divider"></div>
+          <div class="testimonial-author">Hoërskool Standerton</div>
+          <div class="testimonial-role">School Testimonial · November 2025</div>
           <span class="testimonial-cta">Read full testimonial →</span>
         </div>
         <div class="testimonial-card">
           <div class="testimonial-quote">"A pleasure to work with — delivers clean, professional results and communicates well throughout the process."</div>
-          <div class="testimonial-meta">
-            <div class="testimonial-author">Web Development Client</div>
-            <div class="testimonial-role">Happy to provide a reference on request</div>
-          </div>
+          <div class="testimonial-divider"></div>
+          <div class="testimonial-author">Web Development Client</div>
+          <div class="testimonial-role">Happy to provide a reference on request</div>
         </div>
       </div>
     </div>
@@ -1848,6 +1891,12 @@
     sections.forEach(sec => navObserver.observe(sec));
 
     // Testimonial modal
+    function toggleQuote(id, btn) {
+      const el = document.getElementById(id);
+      const expanded = el.classList.toggle('expanded');
+      btn.textContent = expanded ? 'Show less ↑' : 'Read more ↓';
+    }
+
     function openTestimonial() {
       document.getElementById('testimonial-modal').classList.add('active');
       document.body.style.overflow = 'hidden';
