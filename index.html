@@ -596,32 +596,32 @@
 
     /* HOBBIES */
     .hobbies-scroll-wrap {
-      overflow: hidden;
-      position: relative;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent) transparent;
       margin: 0 -1rem;
-      padding: 0.5rem 0;
+      padding: 0.5rem 1rem 1rem;
+    }
+
+    .hobbies-scroll-wrap::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .hobbies-scroll-wrap::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .hobbies-scroll-wrap::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 2px;
     }
 
     .hobbies-grid {
       display: flex;
       gap: 1.2rem;
       width: max-content;
-      animation: scrollLeft 35s linear infinite;
-      cursor: grab;
-    }
-
-    .hobbies-grid:active {
-      cursor: grabbing;
-      animation-play-state: paused;
-    }
-
-    .hobbies-grid:hover {
-      animation-play-state: paused;
-    }
-
-    @keyframes scrollLeft {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
     }
 
     .hobby-card {
@@ -688,27 +688,32 @@
 
     /* TESTIMONIALS */
     .testimonials-scroll-wrap {
-      overflow: hidden;
-      position: relative;
-      margin: 0 -1rem;
-      padding: 1rem 0 1.5rem;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent) transparent;
+      margin: 2.5rem -1rem 0;
+      padding: 0 1rem 1rem;
+    }
+
+    .testimonials-scroll-wrap::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .testimonials-scroll-wrap::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .testimonials-scroll-wrap::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 2px;
     }
 
     .testimonials-track {
       display: flex;
       gap: 1.5rem;
       width: max-content;
-      animation: scrollLeft 30s linear infinite;
-      cursor: grab;
-    }
-
-    .testimonials-track:active {
-      cursor: grabbing;
-      animation-play-state: paused;
-    }
-
-    .testimonials-track:hover {
-      animation-play-state: paused;
     }
 
     .testimonial-card {
@@ -1658,7 +1663,7 @@
       <p class="section-label">What others say</p>
       <h2 class="section-title">Testimonials</h2>
     </div>
-    <div class="testimonials-scroll-wrap reveal">
+    <div class="testimonials-scroll-wrap">
       <div class="testimonials-track" id="testimonials-track">
         <div class="testimonial-card">
           <div class="testimonial-quote">"I had a great experience working with this talented young professional on my business website. He was attentive, creative, and easy to communicate with throughout the process. The final result exceeded my expectations, and I highly recommend his services."</div>
@@ -1745,15 +1750,44 @@
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
-    // Infinite scroll cloning — hobbies & testimonials
-    ['hobbies-track', 'testimonials-track'].forEach(id => {
-      const track = document.getElementById(id);
-      if (!track) return;
-      // Clone all children and append for seamless loop
-      [...track.children].forEach(child => {
-        track.appendChild(child.cloneNode(true));
+    // Auto-scroll with manual override for hobbies & testimonials
+    const setupAutoScroll = (wrapperId, trackId, scrollSpeed = 30) => {
+      const wrapper = document.getElementById(wrapperId);
+      const track = document.getElementById(trackId);
+      if (!wrapper || !track) return;
+
+      let isAutoScrolling = true;
+      let scrollTimeout;
+
+      const autoScroll = () => {
+        if (!isAutoScrolling) return;
+        wrapper.scrollLeft += scrollSpeed;
+
+        // Loop back to start when reaching end
+        if (wrapper.scrollLeft >= wrapper.scrollWidth - wrapper.clientWidth) {
+          wrapper.scrollLeft = 0;
+        }
+        requestAnimationFrame(autoScroll);
+      };
+
+      // Start auto scroll
+      autoScroll();
+
+      // Pause on user scroll
+      wrapper.addEventListener('scroll', () => {
+        isAutoScrolling = false;
+        clearTimeout(scrollTimeout);
+
+        // Resume auto-scroll after 3 seconds of inactivity
+        scrollTimeout = setTimeout(() => {
+          isAutoScrolling = true;
+          autoScroll();
+        }, 3000);
       });
-    });
+    };
+
+    setupAutoScroll('hobbies-scroll-wrap', 'hobbies-track', 0.8);
+    setupAutoScroll('testimonials-scroll-wrap', 'testimonials-track', 0.8);
 
     // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
