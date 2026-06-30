@@ -264,9 +264,9 @@
     /* CV */
     .cv-layout {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr;
       gap: 4rem;
-      max-width: 700px;
+      align-items: start;
     }
 
     .cv-col h3 {
@@ -308,6 +308,28 @@
       font-size: 0.88rem;
       color: var(--soft);
       font-weight: 300;
+    }
+
+    .cv-entry-desc {
+      font-size: 0.9rem;
+      color: var(--mid);
+      font-weight: 300;
+      margin-top: 0.5rem;
+      max-width: 520px;
+    }
+
+    .work-photo {
+      margin: 1rem 0 0.5rem;
+      border-radius: 2px;
+      overflow: hidden;
+      max-width: 360px;
+      border: 1px solid var(--light-line);
+    }
+
+    .work-photo img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
     .skills-grid {
@@ -1271,6 +1293,7 @@
         Building skills, one project at a time.</p>
       <div class="hero-tags">
         <span class="tag">Python</span>
+        <span class="tag">C#</span>
         <span class="tag">HTML</span>
         <span class="tag">Delphi</span>
         <span class="tag">Problem Solver</span>
@@ -1296,8 +1319,10 @@
           South Africa. I grew up in Standerton, Mpumalanga, and I'm passionate about programming, technology, and
           solving real-world problems.</p>
         <p>My coding journey began with Python and Delphi in high school, where I built an interest in automation and
-          practical software. I'm currently expanding into web development and data science, always looking for the next
-          thing to learn.</p>
+          practical software. I've since picked up C# and I'm currently expanding into web development and data science,
+          always looking for the next thing to learn.</p>
+        <p>In June 2026 I joined VDM Auditors in Standerton as IT Innovation &amp; Automation — where I build systems
+          that automate repetitive work and save auditors valuable time.</p>
         <p>Outside of code, I'm constantly trying new things — whether that's training at the CrossFit box, pushing
           myself on a long run, or picking up a skateboard. Life's too short not to experiment.</p>
       </div>
@@ -1326,9 +1351,23 @@
   <section id="cv" style="background: #f0ebe2;">
     <div class="reveal">
       <p class="section-label">Background</p>
-      <h2 class="section-title">Education</h2>
+      <h2 class="section-title">Experience &amp; Education</h2>
     </div>
     <div class="cv-layout">
+      <div class="cv-col reveal">
+        <h3>Experience</h3>
+        <div class="cv-entry">
+          <div class="cv-entry-year">June 2026 – Present</div>
+          <div class="cv-entry-title">IT Innovation &amp; Automation</div>
+          <div class="cv-entry-sub">VDM Auditors · Standerton</div>
+          <div class="cv-entry-desc">I build systems that automate repetitive tasks, helping auditors work faster
+            and saving them valuable time.</div>
+          <div class="work-photo">
+            <img src="vdm-auditors-work.jpeg" loading="lazy" alt="Chraeten at work at VDM Auditors" />
+          </div>
+        </div>
+      </div>
+
       <div class="cv-col reveal">
         <h3>Education</h3>
         <div class="cv-entry">
@@ -1450,6 +1489,10 @@
       <h2 class="section-title">Websites I've Built</h2>
     </div>
 
+    <button class="projects-toggle reveal" onclick="this.classList.toggle('open'); document.getElementById('portfolio-list').classList.toggle('open');">
+      <span class="toggle-arrow">▼</span> Show Websites I've Built
+    </button>
+    <div class="projects-collapsible" id="portfolio-list">
     <div class="portfolio-showcase">
       <div class="portfolio-item reveal">
         <div class="portfolio-preview">
@@ -1532,6 +1575,7 @@
         </div>
       </div>
     </div>
+    </div><!-- end portfolio-list -->
 
     <div class="website-cta-banner reveal">
       <div class="website-cta-text">
