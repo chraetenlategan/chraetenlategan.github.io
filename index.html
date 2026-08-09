@@ -922,6 +922,9 @@
     }
 
     .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
       padding: 0.8rem 2rem;
       border: 1px solid rgba(245, 240, 232, 0.25);
       color: var(--cream);
@@ -931,6 +934,24 @@
       text-transform: uppercase;
       transition: all 0.25s;
       border-radius: 1px;
+    }
+
+    /* white chip keeps every icon legible on the dark footer,
+       whether it ships transparent (github, discord) or on white (linkedin, strava) */
+    .contact-icon {
+      width: 22px;
+      height: 22px;
+      flex: none;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 4px;
+      padding: 2px;
+    }
+
+    /* strava's mark sits small inside a wide canvas — crop to it so it matches the rest */
+    .contact-icon[src$="strava.webp"] {
+      object-fit: cover;
+      padding: 0;
     }
 
     .contact-btn:hover {
@@ -1374,7 +1395,7 @@
           <div class="cv-entry-desc">I build systems that automate repetitive tasks, helping auditors work faster
             and saving them valuable time.</div>
           <div class="work-photo">
-            <img src="vdm-auditors-work.jpeg" loading="lazy" alt="Chraeten at work at VDM Auditors" />
+            <img src="images/vdm-auditors-work.jpeg" loading="lazy" alt="Chraeten at work at VDM Auditors" />
           </div>
         </div>
       </div>
@@ -1886,12 +1907,19 @@
     <p class="reveal" style="color:rgba(245,240,232,0.65); font-weight:300; max-width:480px; margin-bottom:2.5rem;">
       Whether it's about a project, an opportunity, or just to say hi — I'm always open to a good conversation.</p>
     <div class="contact-links reveal">
-      <a href="mailto:chraetenlategan@gmail.com" class="contact-btn primary">Email Me</a>
+      <a href="mailto:chraetenlategan@gmail.com" class="contact-btn primary">
+        <img src="images/email.jpg" class="contact-icon" loading="lazy" alt="" />Email Me</a>
       <a href="tel:+27662530134" class="contact-phone">📞 +27 066 253 0134</a>
-      <a href="https://www.linkedin.com" target="_blank" class="contact-btn">LinkedIn</a>
-      <a href="https://github.com/chraetenlategan" target="_blank" class="contact-btn">GitHub</a>
-      <a href="https://www.strava.com/athletes/134258833" target="_blank" class="contact-btn">Strava</a>
-      <a href="https://www.youtube.com/@Chraeten" target="_blank" class="contact-btn">YouTube</a>
+      <a href="https://www.linkedin.com" target="_blank" class="contact-btn">
+        <img src="images/linkedn.jpg" class="contact-icon" loading="lazy" alt="" />LinkedIn</a>
+      <a href="https://github.com/chraetenlategan" target="_blank" class="contact-btn">
+        <img src="images/github.png" class="contact-icon" loading="lazy" alt="" />GitHub</a>
+      <a href="https://discordapp.com/users/959824959683833886" target="_blank" class="contact-btn">
+        <img src="images/discord-icon.svg" class="contact-icon" loading="lazy" alt="" />Discord</a>
+      <a href="https://www.strava.com/athletes/134258833" target="_blank" class="contact-btn">
+        <img src="images/strava.webp" class="contact-icon" loading="lazy" alt="" />Strava</a>
+      <a href="https://www.youtube.com/@Chraeten" target="_blank" class="contact-btn">
+        <img src="images/youtube.png" class="contact-icon" loading="lazy" alt="" />YouTube</a>
     </div>
     <div class="footer-bottom">
       <p>© 2026 Chraeten George Lategan</p>
